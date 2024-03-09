@@ -22,3 +22,6 @@ gdb works fine without it though, so maybe our crash handler could too.
 
 [参考连接](https://github.com/godotengine/godot/blob/aef11a1/platform/linuxbsd/crash_handler_linuxbsd.h)
 
+[addr2line 动态库](https://cloud.tencent.com/developer/article/2164289)
+
+[C/C++ 回溯方法综述](https://stackoverflow.com/questions/3899870)
