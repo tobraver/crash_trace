@@ -13,6 +13,11 @@ This is needed for our crash handler to work properly.
 gdb works fine without it though, so maybe our crash handler could too.
 ```
 
+根据打印输出的地址查找具体的文件与行数:
+```
+addr2line -e ${exec_file} ${addr}
+```
+
 
 # 项目参考
 

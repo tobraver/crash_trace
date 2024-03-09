@@ -1,7 +1,4 @@
 #include <iostream>
-#include <string>
-#include <list>
-#include <cxxabi.h> // abi::__cxa_demangle
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +6,7 @@
 #include <signal.h> // signal
 #include <execinfo.h> // backtrace, backtrace_symbols, backtrace_symbols_fd
 #include <dlfcn.h> // dladdr
-#include <link.h> // _r_debug.r_map->l_addr
+#include <cxxabi.h> // abi::__cxa_demangle
 
 #include "crash_trace.h"
 
@@ -23,14 +20,6 @@ void crash_trace_dump(int signum)
 	printf("%s: Program crashed with signal %d\n", __FUNCTION__, signum);
 
 	char **strings = backtrace_symbols(bt_buffer, size);
-	// PIE executable relocation, zero for non-PIE executables
-#ifdef __GLIBC__
-	// This is a glibc only thing apparently.
-	uintptr_t relocation = _r_debug.r_map->l_addr;
-#else
-	// Non glibc systems apparently don't give PIE relocation info.
-	uintptr_t relocation = 0;
-#endif //__GLIBC__
 	if (strings) 
     {
 		for (size_t i = 1; i < size; i++) 
