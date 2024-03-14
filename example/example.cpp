@@ -5,6 +5,7 @@ void fun3(void)
 {
     int *p = NULL;
     *p = 1024;
+    printf("%d\n", *p);
 }
 
 /* "static" means don't export the symbol... */
